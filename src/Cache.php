@@ -40,10 +40,11 @@ class Cache
 
     public static function check($name)
     {
-        if (!self::$client->get($name)) {
+        $value = self::$client->get($name);
+        if (!$value) {
             return false;
         }
-        return json_decode(self::$client->get($name));
+        return json_decode($value);
     }
 
     public static function set($name, $data,  $time = null)
